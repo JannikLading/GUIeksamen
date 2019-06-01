@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:VarraoCounting"
         xmlns:viewmodels="clr-namespace:VarraoCounting.Viewmodels"
         mc:Ignorable="d"
-        Title="Varroa attack registry" Height="450" Width="800" Background="Gray">
+        Title="Varroa Attack Registry" Height="450" Width="800" Background="Gray">
     <Window.DataContext>
         <viewmodels:MainWindowViewModel />
     </Window.DataContext>
@@ -31,15 +31,20 @@
             </StatusBarItem>
         </StatusBar>
 
-        <Grid>
+
+
+        <Grid Margin="0,0.4,0,-0.4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1.2*"/>
                 <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="5*"/>
             </Grid.ColumnDefinitions>
 
-            <Rectangle Grid.ColumnSpan="2" Fill="CadetBlue"></Rectangle>
-            <Rectangle Grid.Column="2" Fill="DarkCyan"></Rectangle>
+            <Rectangle Grid.ColumnSpan="2" Fill="Orange"></Rectangle>
+            <Rectangle Grid.Column="2" Fill="DarkOrange"></Rectangle>
+
+
+            <Image Grid.ColumnSpan="3" Stretch="UniformToFill" Source="/Images/Honey.png" Margin="-39,0,-64.4,0" />
 
             <Label Margin="5"  Grid.ColumnSpan="2" FontSize="16">Current Varroa Count</Label>
 

@@ -148,27 +148,31 @@ namespace VarraoCounting.Viewmodels
         {
             get
             {
-                return _filterCommand ?? (_filterCommand = new DelegateCommand(() =>
-                {
+                return _filterCommand ?? (_filterCommand = new DelegateCommand( () => FilterVarroaCounts()));
+            }
+        }
 
-                    if (Filter != "")
+        private async void FilterVarroaCounts()
+        {
+            var tempVarroaCounts = new ObservableCollection<VarroaCount>();
+            await Task.Run(() =>
+            {
+                if (Filter != "")
+                {
+                    foreach (var varroaCount in VarroaCounts)
                     {
-                        FilteredVarroaCounts.Clear();
-                        foreach (var varroaCount in VarroaCounts)
+                        if (varroaCount.Beehive == Filter)
                         {
-                            if (varroaCount.Beehive == Filter)
-                            {
-                                FilteredVarroaCounts.Add(varroaCount);
-                            }
+                            tempVarroaCounts.Add(varroaCount);
                         }
                     }
-                    else
-                    {
-                        FilteredVarroaCounts = new ObservableCollection<VarroaCount>(VarroaCounts); 
-                    }
-
-                }));
-            }
+                }
+                else
+                {
+                    FilteredVarroaCounts = new ObservableCollection<VarroaCount>(VarroaCounts);
+                }
+            });
+            FilteredVarroaCounts = new ObservableCollection<VarroaCount>(tempVarroaCounts);
         }
 
         public string Filename
