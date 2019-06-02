@@ -154,10 +154,11 @@ namespace VarraoCounting.Viewmodels
 
         private async void FilterVarroaCounts()
         {
-            var tempVarroaCounts = new ObservableCollection<VarroaCount>();
-            await Task.Run(() =>
+            if (Filter != "")
             {
-                if (Filter != "")
+                var tempVarroaCounts = new ObservableCollection<VarroaCount>();
+
+                await Task.Run(() =>
                 {
                     foreach (var varroaCount in VarroaCounts)
                     {
@@ -166,13 +167,14 @@ namespace VarraoCounting.Viewmodels
                             tempVarroaCounts.Add(varroaCount);
                         }
                     }
-                }
-                else
-                {
-                    FilteredVarroaCounts = new ObservableCollection<VarroaCount>(VarroaCounts);
-                }
-            });
-            FilteredVarroaCounts = new ObservableCollection<VarroaCount>(tempVarroaCounts);
+                });
+                FilteredVarroaCounts = new ObservableCollection<VarroaCount>(tempVarroaCounts);
+
+            }
+            else
+            {
+                FilteredVarroaCounts = new ObservableCollection<VarroaCount>(VarroaCounts);
+            }
         }
 
         public string Filename

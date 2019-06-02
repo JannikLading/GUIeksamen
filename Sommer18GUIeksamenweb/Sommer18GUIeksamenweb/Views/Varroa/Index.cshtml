@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Sommer18GUIeksamenweb.Models.VarroaCount>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<p style="margin-top: 10px;">
+    <a asp-controller="Varroa" asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BeeHiveName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AmountOfVarroa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ObservedDays)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Note)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BeeHiveName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AmountOfVarroa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ObservedDays)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Note)
+                </td>
+                @*<td>
+                    <a asp-action="Edit" asp-route-id="@item.BeehiveId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.BeehiveId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.BeehiveId">Delete</a>
+                </td>*@
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts
+    {
+    <script>
+        var footerTimeStamp = document.getElementById("modifyState");
+        console.log(footerTimeStamp);
+        var newHTML = footerTimeStamp.innerHTML + "<p> - This page was last modified: " + document.lastModified + "</p>";
+        footerTimeStamp.innerHTML = newHTML;
+    </script>
+
+    <script src="~/js/site.js"></script>
+}
